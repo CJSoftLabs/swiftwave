@@ -27,6 +27,13 @@ service_order:
   - nodejs
   - java-gradle
   - java-maven
+  - dotnet-blazor-wasm
+  - dotnet-aspnet-webapi
+  - dotnet-aspnet-mvc
+  - dotnet-blazor-server
+  - dotnet-minimal-api
+  - dotnet-worker
+  - dotnet-console
   - static-site
 
 lookup_files:
@@ -42,6 +49,7 @@ lookup_files:
   - pom.xml
   - go.mod
   - go.sum
+  - wwwroot/index.html
 
 services:
   nodejs:
@@ -125,6 +133,27 @@ services:
   java-maven:
     name: Java + Maven
     description: Java based application with Maven
+  dotnet-aspnet-webapi:
+    name: .NET ASP.NET Web API
+    description: .NET ASP.NET Web API application
+  dotnet-aspnet-mvc:
+    name: .NET ASP.NET MVC
+    description: .NET ASP.NET MVC application
+  dotnet-blazor-server:
+    name: .NET Blazor Server
+    description: .NET Blazor Server application
+  dotnet-blazor-wasm:
+    name: .NET Blazor WASM
+    description: .NET Blazor WebAssembly application
+  dotnet-console:
+    name: .NET Console
+    description: .NET Console application
+  dotnet-worker:
+    name: .NET Worker
+    description: .NET Worker service
+  dotnet-minimal-api:
+    name: .NET Minimal API
+    description: .NET Minimal API application
   static-site:
     name: Static Site
     description: Static site [HTML, CSS, JS]
@@ -254,6 +283,175 @@ templates:
         type: string
         description: Start command for java app
         default: java -jar app.jar
+  dotnet-aspnet-webapi:
+    name: aspnet-webapi.dockerfile
+    variables:
+      DOTNET_VERSION:
+        type: string
+        description: .NET SDK version
+        default: "8.0"
+      PROJECT_FILE_PATH:
+        type: string
+        description: "Path to the .csproj file (e.g., src/MyProject/MyProject.csproj)"
+        default: "YourProject.csproj"
+      APP_NAME:
+        type: string
+        description: "The name of your application's main assembly (without .dll)"
+        default: "YourApp"
+      START_COMMAND:
+        type: string
+        description: "Start command for the application"
+        default: "dotnet ${APP_NAME}.dll"
+      ASPNETCORE_URLS:
+        type: string
+        description: Port for web applications to listen on
+        default: "http://+:8080"
+      HEALTHCHECK_URI:
+        type: string
+        description: "Healthcheck URI (e.g., /healthz). Leave empty to disable."
+        default: ""
+  dotnet-aspnet-mvc:
+    name: aspnet-mvc.dockerfile
+    variables:
+      DOTNET_VERSION:
+        type: string
+        description: .NET SDK version
+        default: "8.0"
+      PROJECT_FILE_PATH:
+        type: string
+        description: "Path to the .csproj file (e.g., src/MyProject/MyProject.csproj)"
+        default: "YourProject.csproj"
+      APP_NAME:
+        type: string
+        description: "The name of your application's main assembly (without .dll)"
+        default: "YourApp"
+      START_COMMAND:
+        type: string
+        description: "Start command for the application"
+        default: "dotnet ${APP_NAME}.dll"
+      ASPNETCORE_URLS:
+        type: string
+        description: Port for web applications to listen on
+        default: "http://+:8080"
+      HEALTHCHECK_URI:
+        type: string
+        description: "Healthcheck URI (e.g., /healthz). Leave empty to disable."
+        default: ""
+  dotnet-blazor-server:
+    name: blazor-server.dockerfile
+    variables:
+      DOTNET_VERSION:
+        type: string
+        description: .NET SDK version
+        default: "8.0"
+      PROJECT_FILE_PATH:
+        type: string
+        description: "Path to the .csproj file (e.g., src/MyProject/MyProject.csproj)"
+        default: "YourProject.csproj"
+      APP_NAME:
+        type: string
+        description: "The name of your application's main assembly (without .dll)"
+        default: "YourApp"
+      START_COMMAND:
+        type: string
+        description: "Start command for the application"
+        default: "dotnet ${APP_NAME}.dll"
+      ASPNETCORE_URLS:
+        type: string
+        description: Port for web applications to listen on
+        default: "http://+:8080"
+      HEALTHCHECK_URI:
+        type: string
+        description: "Healthcheck URI (e.g., /healthz). Leave empty to disable."
+        default: ""
+  dotnet-blazor-wasm:
+    name: blazor-wasm.dockerfile
+    variables:
+      DOTNET_VERSION:
+        type: string
+        description: .NET SDK version
+        default: "8.0"
+      PROJECT_FILE_PATH:
+        type: string
+        description: "Path to the .csproj file (e.g., src/MyProject/MyProject.csproj)"
+        default: "YourProject.csproj"
+      NGINX_PORT:
+        type: string
+        description: Port for Nginx to listen on
+        default: "8080"
+  dotnet-console:
+    name: dotnet-console.dockerfile
+    variables:
+      DOTNET_VERSION:
+        type: string
+        description: .NET SDK version
+        default: "8.0"
+      PROJECT_FILE_PATH:
+        type: string
+        description: "Path to the .csproj file (e.g., src/MyProject/MyProject.csproj)"
+        default: "YourProject.csproj"
+      APP_NAME:
+        type: string
+        description: "The name of your application's main assembly (without .dll)"
+        default: "YourApp"
+      START_COMMAND:
+        type: string
+        description: "Start command for the application"
+        default: "dotnet ${APP_NAME}.dll"
+  dotnet-worker:
+    name: dotnet-worker.dockerfile
+    variables:
+      DOTNET_VERSION:
+        type: string
+        description: .NET SDK version
+        default: "8.0"
+      PROJECT_FILE_PATH:
+        type: string
+        description: "Path to the .csproj file (e.g., src/MyProject/MyProject.csproj)"
+        default: "YourProject.csproj"
+      APP_NAME:
+        type: string
+        description: "The name of your application's main assembly (without .dll)"
+        default: "YourApp"
+      START_COMMAND:
+        type: string
+        description: "Start command for the application"
+        default: "dotnet ${APP_NAME}.dll"
+      ASPNETCORE_URLS:
+        type: string
+        description: "Port for web applications to listen on. Required for health checks."
+        default: "http://+:8080"
+      HEALTHCHECK_URI:
+        type: string
+        description: "Healthcheck URI (e.g., /healthz). Leave empty to disable."
+        default: ""
+  dotnet-minimal-api:
+    name: dotnet-minimal-api.dockerfile
+    variables:
+      DOTNET_VERSION:
+        type: string
+        description: .NET SDK version
+        default: "8.0"
+      PROJECT_FILE_PATH:
+        type: string
+        description: "Path to the .csproj file (e.g., src/MyProject/MyProject.csproj)"
+        default: "YourProject.csproj"
+      APP_NAME:
+        type: string
+        description: "The name of your application's main assembly (without .dll)"
+        default: "YourApp"
+      START_COMMAND:
+        type: string
+        description: "Start command for the application"
+        default: "dotnet ${APP_NAME}.dll"
+      ASPNETCORE_URLS:
+        type: string
+        description: Port for web applications to listen on
+        default: "http://+:8080"
+      HEALTHCHECK_URI:
+        type: string
+        description: "Healthcheck URI (e.g., /healthz). Leave empty to disable."
+        default: ""
   golang:
     name: golang.Dockerfile
     variables:
@@ -800,6 +998,53 @@ identifiers:
     selectors:
     - file: pom.xml
       keywords:
+  dotnet-blazor-wasm:
+  - extensions:
+    selectors:
+    - file: wwwroot/index.html
+      keywords: []
+  dotnet-aspnet-webapi:
+  - extensions:
+    - csproj
+    selectors:
+  - extensions:
+    - sln
+    selectors:
+  dotnet-aspnet-mvc:
+  - extensions:
+    - csproj
+    selectors:
+  - extensions:
+    - sln
+    selectors:
+  dotnet-blazor-server:
+  - extensions:
+    - csproj
+    selectors:
+  - extensions:
+    - sln
+    selectors:
+  dotnet-minimal-api:
+  - extensions:
+    - csproj
+    selectors:
+  - extensions:
+    - sln
+    selectors:
+  dotnet-worker:
+  - extensions:
+    - csproj
+    selectors:
+  - extensions:
+    - sln
+    selectors:
+  dotnet-console:
+  - extensions:
+    - csproj
+    selectors:
+  - extensions:
+    - sln
+    selectors:
   ruby:
   - extensions:
     - rb
