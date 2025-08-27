@@ -306,9 +306,9 @@ templates:
         type: string
         description: Port for web applications to listen on
         default: "http://+:8080"
-      HEALTHCHECK_URI:
+      HealthCheckUri:
         type: string
-        description: "Healthcheck URI (e.g., /healthz). Leave empty to disable."
+        description: "Healthcheck URI (e.g., /api/healthcheck). Leave empty to disable."
         default: ""
   dotnet-aspnet-mvc:
     name: aspnet-mvc.dockerfile
@@ -333,9 +333,9 @@ templates:
         type: string
         description: Port for web applications to listen on
         default: "http://+:8080"
-      HEALTHCHECK_URI:
+      HealthCheckUri:
         type: string
-        description: "Healthcheck URI (e.g., /healthz). Leave empty to disable."
+        description: "Healthcheck URI (e.g., /api/healthcheck). Leave empty to disable."
         default: ""
   dotnet-blazor-server:
     name: blazor-server.dockerfile
@@ -360,9 +360,9 @@ templates:
         type: string
         description: Port for web applications to listen on
         default: "http://+:8080"
-      HEALTHCHECK_URI:
+      HealthCheckUri:
         type: string
-        description: "Healthcheck URI (e.g., /healthz). Leave empty to disable."
+        description: "Healthcheck URI (e.g., /api/healthcheck). Leave empty to disable."
         default: ""
   dotnet-blazor-wasm:
     name: blazor-wasm.dockerfile
@@ -421,9 +421,9 @@ templates:
         type: string
         description: "Port for web applications to listen on. Required for health checks."
         default: "http://+:8080"
-      HEALTHCHECK_URI:
+      HealthCheckUri:
         type: string
-        description: "Healthcheck URI (e.g., /healthz). Leave empty to disable."
+        description: "Healthcheck URI (e.g., /api/healthcheck). Leave empty to disable."
         default: ""
   dotnet-minimal-api:
     name: dotnet-minimal-api.dockerfile
@@ -448,9 +448,9 @@ templates:
         type: string
         description: Port for web applications to listen on
         default: "http://+:8080"
-      HEALTHCHECK_URI:
+      HealthCheckUri:
         type: string
-        description: "Healthcheck URI (e.g., /healthz). Leave empty to disable."
+        description: "Healthcheck URI (e.g., /api/healthcheck). Leave empty to disable."
         default: ""
   golang:
     name: golang.Dockerfile
